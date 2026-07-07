@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Spectral:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- ===== Firebase ===== -->
+<!-- ===== Firebase: reemplaza el guardado de Claude por uno propio ===== -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
@@ -303,7 +303,7 @@
 <div class="wrap">
 
   <div class="catalog-header">
-    <div class="eyebrow">Biblioteca Deportiva LEF · Ficha del mes</div>
+    <div class="eyebrow">Club de lectura · Ficha del mes</div>
     <div class="book-card">
       <button id="adminGear" title="Cargar/editar libro del mes" style="position:absolute;top:10px;right:10px;background:none;border:none;font-size:18px;cursor:pointer;opacity:.55;">⚙️</button>
       <div class="call-number" id="callNumber"></div>
@@ -413,7 +413,10 @@ const SECTIONS = [
   {key:"final", label:"Desafío Final", icon:"🏆"},
 ];
 
-/* ---- Protección del panel admin con PIN ---- */
+/* ---- Protección del panel admin con PIN ----
+   ⚠️ CAMBIA ESTE PIN antes de compartir el juego con el club.
+   No es una seguridad perfecta (es código visible en el navegador),
+   pero evita que alguien entre por error o por curiosidad al tocar el ⚙️. */
 const ADMIN_PIN = "0000";
 
 async function isAdminUnlocked(){
@@ -663,7 +666,7 @@ function renderFrases(c){
   } else {
     c.innerHTML += `<p>Completaste el quiz de frases.</p>`;
   }
- const wallHeader = document.createElement("div");
+  const wallHeader = document.createElement("div");
 wallHeader.innerHTML = `<hr class="rule"><h2 style="font-size:16px;">🧷 Muro de frases favoritas</h2><p style="font-size:13px;color:var(--ink-soft)">Visible para todo el club.</p>`;
 c.appendChild(wallHeader);
   const wallBox = document.createElement("div");
